@@ -2,7 +2,9 @@
 
 English | [中文](README.md)
 
-Lets **Google Antigravity** agents see and operate apps on your Mac (screenshots, mouse, keyboard) — while **you can watch every step and press Esc to stop it at any time**.
+Lets **Google Antigravity** agents see and operate apps on your Mac — while **you can watch every step and stop it with one click**.
+
+**v2 is faster and smoother**: it reads each app's accessibility tree (indexed buttons and fields) and acts on elements directly, so most actions **don't move your mouse or steal focus**, and several steps can run in one batch. Five Calculator clicks plus a fresh read took under 1 second in testing.
 
 > Not affiliated with Google. Antigravity's own computer-use feature isn't available to everyone yet; this is a safe, transparent stopgap until it is.
 
@@ -10,16 +12,15 @@ Lets **Google Antigravity** agents see and operate apps on your Mac (screenshots
 
 <p align="center"><img src="docs/demo.gif" width="360" alt="Demo: the agent clicks 7 × 6 = in Calculator with a blue border, status pill and click ripples"></p>
 
-<sub>Real recording: the agent clicked AC, 7, ×, 6, = in Calculator through this tool. For the recording, the overlays were temporarily made capturable (the real build keeps them out of screenshots) and the background was replaced with a solid color.</sub>
+<sub>v1 recording (full-screen border style). v2 replaces it with a small top-right panel plus element highlights.</sub>
 
 While the agent is working:
 
-- 🔵 **A glowing blue border** around the screen (fades out 4 s after it stops)
-- 💬 **A status pill at the top** showing the current action, e.g. "🖱 点击 (300, 200)", plus "press Esc to stop"
-- ⭕ **A ripple** where it clicks
-- 🖱 **Smooth cursor movement** instead of teleporting
+- 🪟 **A small top-right panel** with the last 3 steps and a **Stop** button (becomes **Resume** when paused)
+- 🔷 **Element highlight**: the button/field being acted on flashes a blue outline — visible even though the mouse doesn't move
+- ⭕ **Click ripple + smooth cursor**: only for coordinate fallback clicks
 
-These overlays are **excluded from the agent's own screenshots** (`sharingType = .none`) and are click-through.
+Overlays are **excluded from the agent's own screenshots** (`sharingType = .none`).
 
 ## Safety design
 
@@ -27,7 +28,7 @@ These overlays are **excluded from the agent's own screenshots** (`sharingType =
 |---|---|
 | **Permissions live in one small app** | Screen Recording and Accessibility are granted only to the menu-bar helper `AGY Mac Control`, not to Antigravity |
 | **Localhost + token** | The helper listens on `127.0.0.1:47321` only; every request needs a random token (`~/Library/Application Support/agy-mac-control/token`, mode 600) |
-| **Esc kill switch** | A global Esc pauses everything until you resume from the menu bar |
+| **One-click stop** | The panel's Stop button or a global Esc pauses everything until you resume |
 | **No stale clicks** | Clicking is refused before a screenshot, and refused if the frontmost app changed since the last screenshot |
 | **Sensitive apps blocked** | No clicks/typing while Passwords or Keychain Access is frontmost |
 | **Audit log** | Every action is logged to `helper.log` |
@@ -56,7 +57,7 @@ Uninstall: `./uninstall.sh`
 
 Just tell Antigravity what to do, e.g. "Open Calculator and compute 1234 × 56". Antigravity asks for permission the first time the tools are used.
 
-Tools: `computer_screenshot`, `computer_click`, `computer_move`, `computer_drag`, `computer_scroll`, `computer_type`, `computer_key`, `computer_list_apps`, `computer_open_app`.
+Tools — preferred: `computer_get_app_state`, `computer_click_element`, `computer_set_value`, `computer_element_action`; keyboard: `computer_type`, `computer_key`; batching: `computer_batch`; fallback: `computer_screenshot`, `computer_click`, `computer_drag`, `computer_scroll`, `computer_move`; misc: `computer_list_apps`, `computer_open_app`.
 
 ## Known limitations
 
