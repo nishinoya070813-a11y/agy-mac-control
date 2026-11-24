@@ -1,0 +1,6 @@
+token
+helper.log
+*.bak*
+.DS_Store
+build/
+*.app/
