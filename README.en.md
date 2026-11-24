@@ -10,9 +10,9 @@ Lets **Google Antigravity** agents see and operate apps on your Mac — while **
 
 ## What you see
 
-<p align="center"><img src="docs/demo.gif" width="360" alt="Demo: the agent clicks 7 × 6 = in Calculator with a blue border, status pill and click ripples"></p>
+<p align="center"><img src="docs/demo.gif" width="360" alt="Demo: the agent clicks 7 × 6 = in Calculator by element index, with the top-right panel and element highlights"></p>
 
-<sub>v1 recording (full-screen border style). v2 replaces it with a small top-right panel plus element highlights.</sub>
+<sub>Real v2 recording: the agent read Calculator's button list, then pressed AC, 7, ×, 6, = by index — the mouse never moved. Steps were slowed down for readability; overlays were temporarily made capturable and the background replaced with a solid color.</sub>
 
 While the agent is working:
 
