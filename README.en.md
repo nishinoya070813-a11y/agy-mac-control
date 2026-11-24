@@ -8,6 +8,10 @@ Lets **Google Antigravity** agents see and operate apps on your Mac (screenshots
 
 ## What you see
 
+<p align="center"><img src="docs/demo.gif" width="360" alt="Demo: the agent clicks 7 × 6 = in Calculator with a blue border, status pill and click ripples"></p>
+
+<sub>Real recording: the agent clicked AC, 7, ×, 6, = in Calculator through this tool. For the recording, the overlays were temporarily made capturable (the real build keeps them out of screenshots) and the background was replaced with a solid color.</sub>
+
 While the agent is working:
 
 - 🔵 **A glowing blue border** around the screen (fades out 4 s after it stops)
